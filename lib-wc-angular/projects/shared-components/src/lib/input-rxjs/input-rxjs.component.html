@@ -1,0 +1,12 @@
+<div class="wc-input-rxjs">
+  <label *ngIf="label" class="wc-input-rxjs__label">{{ label }}</label>
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [(ngModel)]="value"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+    class="wc-input-rxjs__field"
+  />
+</div>

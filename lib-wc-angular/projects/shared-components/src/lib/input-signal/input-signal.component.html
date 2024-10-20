@@ -1,0 +1,12 @@
+<div class="wc-input-signal">
+  <label *ngIf="label()" class="wc-input-signal__label">{{ label() }}</label>
+  <input
+    type="text"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [(ngModel)]="value"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+    class="wc-input-signal__field"
+  />
+</div>
