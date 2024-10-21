@@ -18,7 +18,7 @@ Some relevant articles about Web Components below. Highly recommended you go thr
 - 2024-09-28 [Web components are okay](https://nolanlawson.com/2024/09/28/web-components-are-okay/) by Nolan Lawson
   - A response to Ryan's article above.
 
-## `lib-wc-angular`
+## Setup
 
 ### Notable Files/Directories
 
@@ -30,7 +30,13 @@ Some relevant articles about Web Components below. Highly recommended you go thr
 - `projects/wc-angular/src/main.ts`
   - Define Custom Elements here.
 
-### Run both libraries in watch mode
+For each directory, make sure to install the dependencies by running:
+
+```bash
+pnpm install
+```
+
+### Run both libraries in `lib-wc-angular` watch mode
 
 ```bash
 ng build shared-components --watch
@@ -38,6 +44,14 @@ ng build shared-components --watch
 
 ```bash
 ng build wc-angular --watch
+```
+
+### Run both the React and Vue apps
+
+Go to each respective folder and run the command below:
+
+```bash
+pnpm dev
 ```
 
 ## Notes
