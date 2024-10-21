@@ -1,6 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 const content = ref('Vue 3')
 
@@ -21,6 +21,28 @@ const setInputRxjsValue = (value: string) => {
 const inputSignalValue = ref('Initial Value for Vue 3 Input (Signal)')
 const setInputSignalValue = (value: string) => {
   inputSignalValue.value = value
+}
+
+const data = ref([
+  { id: 1, name: 'Vue 3' },
+  { id: 2, name: 'Vue 3 RxJS' },
+  { id: 3, name: 'Vue 3 Signal' },
+  { id: 4, name: 'Vue 3 Web Components' },
+  { id: 5, name: 'Vue 3 Web Components RxJS' },
+  { id: 6, name: 'Vue 3 Web Components Signal' },
+])
+
+const isLoading = ref(true)
+setTimeout(() => {
+  isLoading.value = false
+}, 500)
+setTimeout(() => {
+  data.value[0].name = 'Vue 3 - Updated'
+}, 1500)
+
+function onItemClicked(item: any) {
+  console.log('onItemClicked', item)
+  alert(JSON.stringify(item.detail, null, 2))
 }
 </script>
 
@@ -62,5 +84,20 @@ const setInputSignalValue = (value: string) => {
         <button>Footer Action</button>
       </div>
     </wc-card-multiple-content-projection>
+
+    <template v-if="data && !isLoading">
+      <pre>{{ data }}</pre>
+      <h3>Complex Type Object</h3>
+      <wc-complex-type-object
+        @itemClicked="onItemClicked($event)"
+        :data="data[0]"
+      ></wc-complex-type-object>
+
+      <h3>Complex Type Array</h3>
+      <wc-complex-type-array
+        @itemClicked="onItemClicked($event)"
+        :data="data"
+      ></wc-complex-type-array>
+    </template>
   </main>
 </template>

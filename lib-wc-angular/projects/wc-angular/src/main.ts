@@ -9,6 +9,8 @@ import {
   InputRxjsComponent,
   InputSignalComponent,
   CardMultipleContentProjectionComponent,
+  ComplexTypeArrayComponent,
+  ComplexTypeObjectComponent,
 } from 'shared-components';
 import { ApplicationRef } from '@angular/core';
 
@@ -55,4 +57,20 @@ import { ApplicationRef } from '@angular/core';
     'wc-card-multiple-content-projection',
     cardMultipleContentProjectionComponent
   );
+
+  const complexTypeObjectComponent = createCustomElement(
+    ComplexTypeObjectComponent,
+    {
+      injector: app.injector,
+    }
+  );
+  customElements.define('wc-complex-type-object', complexTypeObjectComponent);
+
+  const complexTypeArrayComponent = createCustomElement(
+    ComplexTypeArrayComponent,
+    {
+      injector: app.injector,
+    }
+  );
+  customElements.define('wc-complex-type-array', complexTypeArrayComponent);
 })();

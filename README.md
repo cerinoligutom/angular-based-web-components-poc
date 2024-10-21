@@ -43,11 +43,14 @@ ng build wc-angular --watch
 | `wc-button`                           | ✅     | ✅           | Basic Content Projection using `<ng-content>`.                                                                                                                                |
 | `wc-button-rxjs`                      | ✅     | ✅           | Uses `@Input` and `@Output`. Vue stays syntactically the same. React however needs prefixing with `on` then the event property (e.g. `on` + `customClick` = `oncustomClick`). |
 | `wc-button-signal`                    | ✅     | ✅           | Got Signals to work after moving to Angular 19 (Pre-Release). See "Other notable things" section.                                                                             |
-| `LitReactButtonRxjs`                  | ✅     | ✅           | Not much DX gained as `wc-button-rxjs`.                                                                                                                                       |
-| `LitReactButtonSignal`                | ✅     | ✅           | Not much DX gained as `wc-button-signal`.                                                                                                                                     |
+| `LitReactButtonRxjs`                  | N/A   | ✅           | Not much DX gained as `wc-button-rxjs`.                                                                                                                                       |
+| `LitReactButtonSignal`                | N/A   | ✅           | Not much DX gained as `wc-button-signal`.                                                                                                                                     |
 | `wc-input-rxjs`                       | ✅     | ✅           | Since the Web Components emits a `CustomEvent`, native 2-way binding mechanisms on downstream frameworks will not work.                                                       |
 | `wc-input-signal`                     | ✅     | ✅           | Has some things to watch out on authoring-time. See "Other notable things" section.                                                                                           |
 | `wc-card-multiple-content-projection` | ✅     | ✅           | Usage in Vue is similar as Angular. React however with its JSX requires the content projection selector to be all lowercase and should have an attribute value                |
+| `wc-complex-type-card`                | N/A   | N/A         | A child component for the `wc-complex-type-object` and `wc-complex-type-array` components to consume. Also to emulate child components.                                       |
+| `wc-complex-type-object`              | ✅     | 🟠           | To test passing complex type, particularly an object (e.g. hashmap, dictionary). Need to be mindful about the rendering.                                                      |
+| `wc-complex-type-array`               | ✅     | 🟠           | To test passing complex type, particularly an array. Need to be mindful about the rendering.                                                                                  |
 
 ### Other notable things
 
@@ -95,6 +98,17 @@ ng build wc-angular --watch
 - Bundle size is pretty large with Angular Elements.
 - Web Components are eager loaded all at once.
   - This can potentially impact user experience as they have to download all the Web Components at once before being able to interact with the page.
+- When dealing with complex types, need to keep a few things in mind as there are differences in how the frameworks handle it.
+  - Common
+    - You'll always receive a `CustomEvent` object when receiving events.
+    - You can still pass data to the Web Component with the preferred syntax of the framework. However, the Web Component must be loaded first or else, the framework might bind it ahead before the Web Component is loaded therefore nothing gets rendered!
+  - Vue 3
+    - When a property of the object is mutated by the Web Component, it detects the change and re-renders the component.
+    - The object from the parent is also mutated.
+  - React 19 RC
+    - When a property of the object is mutated by the Web Component, you'll have to manually update the object in the top-most parent component.
+    - The object from the parent is NOT mutated.
+    - This means, if there are operations that may mutate the object, you'll have to do it in the top-most parent component and make sure the Web Component bubbles the event so that the consumer of the Web Component can handle the updating of the state.
 
 No sane solutions around these:
 
