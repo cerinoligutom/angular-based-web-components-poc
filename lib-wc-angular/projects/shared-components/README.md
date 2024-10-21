@@ -1,6 +1,6 @@
 # SharedComponents
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0 but updated to v19 pre-release to make use of Signals in Web Components.
 
 ## Code scaffolding
 
