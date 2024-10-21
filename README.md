@@ -3,7 +3,12 @@
 This repo aims to experiment in isolation on how to create Web Components based on Angular and consuming it on:
 
 - React 19 RC
+  - `app-react19` folder
 - Vue 3
+  - `app-vue3` folder
+- Angular 18
+  - `app-angular18` folder
+  - Ignore this as it's broken.
 
 Some relevant articles about Web Components below. Highly recommended you go through the articles before proceeding (including the discussions in the comments). This topic is being discussed again recently by the community especially by Framework Authors after Ryan's recent article (3rd item below).
 
