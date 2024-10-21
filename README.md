@@ -29,6 +29,10 @@ Some relevant articles about Web Components below. Highly recommended you go thr
   - This is a shared library that contains the Angular Components to be converted into Custom Elements.
 - `projects/wc-angular/src/main.ts`
   - Define Custom Elements here.
+- `app-react19/src/App.tsx`
+  - Where the components are consumed for React.
+- `app-vue3/src/views/RootView.vue`
+  - Where the components are consumed for Vue.
 
 For each directory, make sure to install the dependencies by running:
 
