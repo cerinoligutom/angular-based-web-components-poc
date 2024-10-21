@@ -56,7 +56,7 @@ export class InputRxjsComponent implements ControlValueAccessor {
     const input = event.target as HTMLInputElement;
     this.value = input.value;
     this.onChange(this.value);
-    this.valueChange.emit(this.value);
+    this.valueChanged.emit(this.value);
   }
 
   onBlur(): void {
